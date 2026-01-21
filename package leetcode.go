@@ -39,14 +39,19 @@ func getRow119(rowIndex int) []int {
 
 func Num1009(num int) int64 {
 	bin := strconv.FormatInt(int64(num), 2)
-	for _, i := range bin {
-		if i == 0 {
-			i = 1
-		} else if i == 1 {
-			i = 0
+	run := []rune(bin)
+	for i, j := range run {
+		switch j {
+		case '0':
+			run[i] = '1'
+		case '1':
+			run[i] = '0'
 		}
 	}
-	res, err := strconv.ParseInt(str, 2, 64)
+	res, err := strconv.ParseInt(string(run), 2, 64)
+	if err != nil {
+		return 0
+	}
 	return res
 }
 
