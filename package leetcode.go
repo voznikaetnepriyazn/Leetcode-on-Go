@@ -4,12 +4,20 @@ import "strconv"
 
 func Num1413(nums []int) int {
 	startValue := 1
-	total := startValue
-	for _, i := range nums {
-		total += i
-		if total < 1 {
-			break
+	for {
+		total := startValue
+		isValid := true
+		for _, i := range nums {
+			total += i
+			if total < 1 {
+				isValid = false
+				break
+			}
 		}
+		if isValid {
+			return startValue
+		}
+		startValue++
 	}
 }
 
@@ -74,3 +82,5 @@ func Num830(s string) [][]int {
 	}
 	return res
 }
+
+func Num190
