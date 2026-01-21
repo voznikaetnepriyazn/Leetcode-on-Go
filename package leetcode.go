@@ -88,4 +88,27 @@ func Num830(s string) [][]int {
 	return res
 }
 
-func Num190
+type Node struct {
+	data  int
+	left  *Node
+	right *Node
+}
+
+func DFS(root *Node, isLonely bool, ans *[]int) {
+	if root == nil {
+		return
+	}
+
+	if isLonely {
+		*ans = append(*ans, root.data)
+	}
+
+	DFS(root.left, root.right == nil, ans)
+	DFS(root.right, root.left == nil, ans)
+}
+
+func Num1469(root *Node) []int {
+	var ans []int
+	DFS(root, false, &ans)
+	return ans
+}
