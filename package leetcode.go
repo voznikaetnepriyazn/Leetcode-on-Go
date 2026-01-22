@@ -140,6 +140,45 @@ func Num1474(head *Node1, m int, n int) *Node1 {
 	return head
 }
 
-func Num955() {
+func Num955(arr []string) int {
+	var n, m int
+	deleteCount := make([]bool, m)
 
+	isSorted := func() bool {
+		for i := range n - 1 {
+			for j := range m {
+				if deleteCount[j] {
+					continue
+				}
+				if arr[i][j] > arr[i+1][j] {
+					return false
+
+				} else {
+					break
+				}
+			}
+		}
+		return true
+	}
+
+	for !isSorted() {
+		for j := 0; j < m; j++ {
+			if deleteCount[j] {
+				continue
+			}
+			for i := range n - 1 {
+				if arr[i][j] > arr[i+1][j] {
+					deleteCount[j] = true
+					break
+				}
+			}
+		}
+		count := 0
+		for _, c := range deleteCount {
+			if c {
+				count++
+			}
+		}
+	}
+	return count
 }
