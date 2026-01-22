@@ -112,3 +112,34 @@ func Num1469(root *Node) []int {
 	DFS(root, false, &ans)
 	return ans
 }
+
+type Node1 struct {
+	data int
+	next *Node1
+}
+
+func Num1474(head *Node1, m int, n int) *Node1 {
+	var currentNode *Node1 = head
+	var lastMNode *Node1
+
+	for currentNode != nil {
+		MM, NN := m, n
+
+		for currentNode != nil && MM > 0 {
+			lastMNode = currentNode
+			currentNode = currentNode.next
+			MM--
+		}
+
+		for currentNode != nil && NN > 0 {
+			currentNode = currentNode.next
+			NN--
+		}
+		lastMNode = currentNode.next
+	}
+	return head
+}
+
+func Num955() {
+
+}
