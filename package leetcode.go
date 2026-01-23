@@ -198,6 +198,22 @@ func Num26(nums []int) int {
 	return i + 1
 }
 
-func Num914() {
+func Num914(deck []int) bool {
+	voc := map[int]int{}
+	for i := range deck {
+		voc[i]++
+	}
 
+	nod := func(a, b int) int {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	g := 0
+	for _, j := range voc {
+		g = nod(g, j)
+	}
+	return g > 1
 }
