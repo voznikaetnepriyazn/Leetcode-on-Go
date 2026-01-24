@@ -121,6 +121,7 @@ type Node1 struct {
 func Num1474(head *Node1, m int, n int) *Node1 {
 	var currentNode *Node1 = head
 	var lastMNode *Node1
+	_ = lastMNode
 
 	for currentNode != nil {
 		MM, NN := m, n
@@ -143,6 +144,7 @@ func Num1474(head *Node1, m int, n int) *Node1 {
 func Num955(arr []string) int {
 	var n, m int
 	deleteCount := make([]bool, m)
+	count := 0
 
 	isSorted := func() bool {
 		for i := range n - 1 {
@@ -173,7 +175,6 @@ func Num955(arr []string) int {
 				}
 			}
 		}
-		count := 0
 		for _, c := range deleteCount {
 			if c {
 				count++
