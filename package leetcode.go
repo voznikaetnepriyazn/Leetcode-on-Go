@@ -1,6 +1,10 @@
 package leetcode
 
-import "strconv"
+import (
+	"math"
+	"sort"
+	"strconv"
+)
 
 func Num1413(nums []int) int {
 	startValue := 1
@@ -258,4 +262,25 @@ func Num844(s, t string) bool {
 		tt--
 	}
 	return true
+}
+
+func Num(row, cols, rCenter, cCenter int) [][]int {
+	cells := make([][3]int, 0, row*cols)
+
+	for r := 0; r <= row; r++ {
+		for c := 0; c <= cols; c++ {
+			abc := int(math.Abs(float64(r-rCenter)) + math.Abs(float64(c-cCenter)))
+			cells = append(cells, [3]int{abc, r, c})
+		}
+	}
+
+	sort.Slice(cells, func(i, j int) bool {
+		return cells[i][0] < cells[j][0]
+	})
+
+	res := make([][]int, len(cells))
+	for i, cell := range cells {
+		res[i] = []int{cell[1], cell[2]}
+	}
+	return res
 }
