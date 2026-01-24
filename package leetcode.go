@@ -217,3 +217,44 @@ func Num914(deck []int) bool {
 	}
 	return g > 1
 }
+
+func Num844(s, t string) bool {
+	ss, tt := len(s)-1, len(t)-1
+	skipS, skipT := 0, 0
+
+	for ss >= 0 || tt >= 0 {
+		for ss >= 0 {
+			if s[ss] == '#' {
+				skipS++
+				ss--
+			} else if skipS > 0 {
+				skipS--
+				ss--
+			} else {
+				break
+			}
+		}
+
+		for tt >= 0 {
+			if t[tt] == '#' {
+				skipT++
+				tt--
+			} else if skipT > 0 {
+				skipT--
+				tt--
+			} else {
+				break
+			}
+		}
+
+		if ss >= 0 && tt >= 0 && s[ss] != t[tt] {
+			return false
+		}
+		if (ss >= 0) != (tt >= 0) {
+			return false
+		}
+		ss--
+		tt--
+	}
+	return true
+}
