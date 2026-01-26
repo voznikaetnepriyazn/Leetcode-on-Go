@@ -284,3 +284,34 @@ func Num(row, cols, rCenter, cCenter int) [][]int {
 	}
 	return res
 }
+
+func Num1337(mat [][]int, k int) []int {
+	m := len(mat)
+	n := len(mat[0])
+
+	arr := make([][2]int, m)
+	for i := 0; i < m; i++ {
+		count := 0
+		for j := 0; j < n; j++ {
+			if mat[i][j] == 0 {
+				break
+			}
+			count++
+		}
+		arr[i][0] = count //quantity of soldiers
+		arr[i][1] = i     //index of string
+	}
+
+	sort.Slice(arr, func(a, b int) bool {
+		if arr[a][0] == arr[b][0] {
+			return arr[a][1] < arr[b][1]
+		}
+		return arr[a][0] < arr[b][0]
+	})
+
+	indexes := make([]int, k)
+	for i := 0; i < k; i++ {
+		indexes[i] = arr[i][1]
+	}
+	return indexes
+}
